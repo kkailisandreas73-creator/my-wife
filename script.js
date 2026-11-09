@@ -12,6 +12,8 @@
 
   function refreshStack(flippingIndex) {
     pages.forEach((page, index) => {
+      page.classList.toggle("is-interactive", index === current && !isAnimating);
+
       if (typeof flippingIndex === "number" && index === flippingIndex) {
         page.style.zIndex = "100";
         return;
@@ -39,16 +41,20 @@
     dots.forEach((dot, i) => {
       dot.classList.toggle("active", i === current);
     });
+    refreshStack();
   }
 
   function waitForFlip(page) {
     return new Promise((resolve) => {
+      let settled = false;
       const done = () => {
+        if (settled) return;
+        settled = true;
         page.removeEventListener("transitionend", onEnd);
         resolve();
       };
       const onEnd = (event) => {
-        if (event.propertyName === "transform") done();
+        if (event.target === page && event.propertyName === "transform") done();
       };
       page.addEventListener("transitionend", onEnd);
       setTimeout(done, 1100);
@@ -84,8 +90,14 @@
     updateUI();
   }
 
-  prevBtn.addEventListener("click", () => flipTo(current - 1));
-  nextBtn.addEventListener("click", () => flipTo(current + 1));
+  prevBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    flipTo(current - 1);
+  });
+  nextBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    flipTo(current + 1);
+  });
 
   // Cover slideshow crossfade through couple photos
   const slides = Array.from(document.querySelectorAll(".slideshow .slide"));
@@ -110,8 +122,17 @@
     const pad = 8;
     const maxX = Math.max(pad, bounds.width - btnRect.width - pad);
     const maxY = Math.max(pad, bounds.height - btnRect.height - pad);
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
+
+    let x = Math.random() * maxX;
+    let y = Math.random() * maxY;
+
+    // Prefer a noticeably different spot from the current position
+    const curLeft = btn.offsetLeft || 0;
+    const curTop = btn.offsetTop || 0;
+    if (Math.hypot(x - curLeft, y - curTop) < 48) {
+      x = (curLeft + maxX / 2) % maxX;
+      y = (curTop + maxY / 2) % maxY;
+    }
 
     btn.style.position = "absolute";
     btn.style.left = `${x}px`;
@@ -120,17 +141,19 @@
     btn.style.bottom = "auto";
   }
 
-  foreverNo.addEventListener("mouseenter", () => {
-    moveRunawayButton(foreverNo, foreverChoices);
-  });
-  foreverNo.addEventListener(
-    "touchstart",
-    (event) => {
-      event.preventDefault();
-      moveRunawayButton(foreverNo, foreverChoices);
-    },
-    { passive: false }
-  );
+  function armRunaway(btn, container) {
+    const flee = (event) => {
+      if (event) event.preventDefault();
+      moveRunawayButton(btn, container);
+    };
+    ["pointerenter", "pointerdown", "mouseenter", "mouseover", "touchstart"].forEach((type) => {
+      btn.addEventListener(type, flee, { passive: false });
+    });
+    btn.addEventListener("click", flee);
+    btn.addEventListener("focus", flee);
+  }
+
+  armRunaway(foreverNo, foreverChoices);
 
   foreverYes.addEventListener("click", () => {
     foreverReply.hidden = false;
@@ -142,23 +165,37 @@
   const promiseYes = document.getElementById("promise-yes");
   const promiseReply = document.getElementById("promise-reply");
 
-  function fleePromiseNo() {
-    if (promiseNo.classList.contains("is-fleeing")) return;
+  function fleePromiseNo(event) {
+    if (event) event.preventDefault();
+    if (promiseNo.classList.contains("is-fleeing") || promiseNo.style.visibility === "hidden") {
+      return;
+    }
     promiseNo.classList.add("is-fleeing");
     setTimeout(() => {
       promiseNo.style.visibility = "hidden";
     }, 900);
   }
 
-  promiseNo.addEventListener("mouseenter", fleePromiseNo);
-  promiseNo.addEventListener(
-    "touchstart",
-    (event) => {
-      event.preventDefault();
-      fleePromiseNo();
-    },
-    { passive: false }
+  ["pointerenter", "pointerdown", "pointerover", "mouseenter", "mouseover", "touchstart", "click", "focus"].forEach(
+    (type) => {
+      promiseNo.addEventListener(type, fleePromiseNo, { passive: false });
+    }
   );
+
+  // If the pointer is already over the button after a page flip, force the flee.
+  document.addEventListener("pointermove", (event) => {
+    if (current !== 4 || promiseNo.classList.contains("is-fleeing")) return;
+    if (promiseNo.style.visibility === "hidden") return;
+    const rect = promiseNo.getBoundingClientRect();
+    if (
+      event.clientX >= rect.left &&
+      event.clientX <= rect.right &&
+      event.clientY >= rect.top &&
+      event.clientY <= rect.bottom
+    ) {
+      fleePromiseNo(event);
+    }
+  });
 
   const EMOJIS = ["💖", "💍", "💕", "💗", "💝", "💞", "❤️", "🥰", "💘", "✨"];
 

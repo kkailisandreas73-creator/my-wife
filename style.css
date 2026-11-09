@@ -110,6 +110,8 @@ body {
 }
 
 .book-scene {
+  position: relative;
+  z-index: 1;
   perspective: 2200px;
   padding: 1rem;
 }
@@ -120,6 +122,8 @@ body {
   height: var(--page-h);
   transform-style: preserve-3d;
   filter: drop-shadow(0 22px 35px var(--shadow));
+  /* Keep 3D page hit-areas from stealing clicks outside the book */
+  pointer-events: none;
 }
 
 .book-spine {
@@ -142,6 +146,11 @@ body {
   transform-style: preserve-3d;
   transition: transform 1s cubic-bezier(0.45, 0.05, 0.25, 1);
   z-index: 1;
+  pointer-events: none;
+}
+
+.page.is-interactive {
+  pointer-events: auto;
 }
 
 .page.flipped {
@@ -392,14 +401,19 @@ body {
 }
 
 .controls {
+  position: relative;
+  z-index: 300;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.9rem;
   width: min(420px, 92vw);
+  pointer-events: auto;
 }
 
 .nav-btn {
+  position: relative;
+  z-index: 301;
   font-family: "Quicksand", sans-serif;
   font-weight: 700;
   font-size: 0.92rem;
@@ -412,6 +426,7 @@ body {
   box-shadow: 0 8px 18px rgba(90, 55, 65, 0.1);
   cursor: pointer;
   transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+  touch-action: manipulation;
 }
 
 .nav-btn:hover:not(:disabled) {
