@@ -218,47 +218,42 @@ body {
 .slideshow {
   position: absolute;
   inset: 0;
+  background: linear-gradient(160deg, #f3d0d8, #f7e6d4);
 }
 
 .slide {
   position: absolute;
   inset: 0;
   opacity: 0;
-  transition: opacity 1.6s ease;
+  transition: opacity 1.8s ease;
 }
 
 .slide.is-active {
   opacity: 1;
 }
 
-.slide-1 {
-  background:
-    radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.45), transparent 40%),
-    linear-gradient(145deg, #f8cdd8, #f3d9b8 48%, #efb7c4);
-}
-
-.slide-2 {
-  background:
-    radial-gradient(circle at 70% 30%, rgba(255, 248, 240, 0.5), transparent 42%),
-    linear-gradient(160deg, #f6d2bc, #f0b8c6 55%, #e9c98e);
-}
-
-.slide-3 {
-  background:
-    radial-gradient(circle at 40% 70%, rgba(255, 255, 255, 0.4), transparent 45%),
-    linear-gradient(135deg, #efc0cc, #f7e2c4 50%, #e8a9b8);
-}
-
-.slide-4 {
-  background:
-    radial-gradient(circle at 60% 45%, rgba(255, 255, 255, 0.42), transparent 40%),
-    linear-gradient(155deg, #f3c6a8, #f2cdd8 46%, #e6bf7a);
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 28%;
+  display: block;
+  transform: scale(1.04);
 }
 
 .cover-veil {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(90, 45, 55, 0.08), rgba(90, 45, 55, 0.45) 70%);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 236, 240, 0.28) 0%,
+      rgba(247, 201, 212, 0.18) 28%,
+      rgba(90, 45, 55, 0.28) 55%,
+      rgba(74, 35, 45, 0.62) 100%
+    ),
+    radial-gradient(ellipse at 50% 20%, rgba(255, 248, 240, 0.22), transparent 55%);
+  pointer-events: none;
 }
 
 .cover-content {

@@ -22,5 +22,6 @@ Then visit [http://127.0.0.1:3847](http://127.0.0.1:3847).
 - `index.html` — structure & copy
 - `style.css` — pastel look & CSS 3D page flips
 - `script.js` — navigation, slideshow, runaway buttons, celebration
+- `photos/` — couple photos for the cover crossfade slideshow
 
 No build step. Pure HTML, CSS, and JavaScript.

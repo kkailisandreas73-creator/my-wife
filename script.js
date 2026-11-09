@@ -87,15 +87,15 @@
   prevBtn.addEventListener("click", () => flipTo(current - 1));
   nextBtn.addEventListener("click", () => flipTo(current + 1));
 
-  // Cover slideshow crossfade
-  const slides = Array.from(document.querySelectorAll(".slide"));
+  // Cover slideshow crossfade through couple photos
+  const slides = Array.from(document.querySelectorAll(".slideshow .slide"));
   let slideIndex = 0;
   if (slides.length > 1) {
     setInterval(() => {
       slides[slideIndex].classList.remove("is-active");
       slideIndex = (slideIndex + 1) % slides.length;
       slides[slideIndex].classList.add("is-active");
-    }, 3200);
+    }, 3500);
   }
 
   // Page 4 — runaway "No"
