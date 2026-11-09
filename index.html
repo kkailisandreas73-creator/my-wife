@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Journey Together — For My Love</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="ambient" aria-hidden="true">
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+  </div>
+
+  <header class="site-header">
+    <p class="eyebrow"><i class="fa-solid fa-heart"></i> A little book for you</p>
+    <h1 class="brand">Our Journey Together</h1>
+  </header>
+
+  <main class="stage">
+    <div class="book-scene">
+      <div class="book" id="book" aria-live="polite">
+        <!-- Page 1: Cover -->
+        <article class="page" data-page="0">
+          <div class="page-face page-front cover-page">
+            <div class="slideshow" aria-hidden="true">
+              <div class="slide slide-1 is-active"></div>
+              <div class="slide slide-2"></div>
+              <div class="slide slide-3"></div>
+              <div class="slide slide-4"></div>
+            </div>
+            <div class="cover-veil"></div>
+            <div class="cover-content">
+              <i class="fa-solid fa-book-heart cover-icon"></i>
+              <h2>Our Journey Together</h2>
+              <p class="lead">
+                My love, every year with you has felt like a soft sunrise I never want to end.
+                From quiet mornings to the nights we held each other a little tighter, our time
+                together has been the most beautiful gift of my life. This book is only a small
+                window into how deeply grateful I am that you chose me — and how endlessly I
+                choose you, again and again.
+              </p>
+              <p class="hint">Turn the page, my heart…</p>
+            </div>
+          </div>
+          <div class="page-face page-back"></div>
+        </article>
+
+        <!-- Page 2 -->
+        <article class="page" data-page="1">
+          <div class="page-face page-front">
+            <div class="page-ornament"><i class="fa-solid fa-hands-holding-heart"></i></div>
+            <h2>Through Thick and Thin</h2>
+            <p>
+              We have walked through storms that tried to shake us — doubts, heavy days,
+              quiet insecurities that whispered we might not be enough. And still, hand in
+              hand, we rose. You steadied me when I felt small; I held you when the world felt
+              sharp. Every trouble we faced became another proof that our love does not crack —
+              it softens, it strengthens, it stays.
+            </p>
+            <p>
+              My darling, we are completely unbreakable. Not because life is always gentle,
+              but because we keep choosing each other in the hard places. Whatever comes next,
+              I am already beside you.
+            </p>
+          </div>
+          <div class="page-face page-back"></div>
+        </article>
+
+        <!-- Page 3 -->
+        <article class="page" data-page="2">
+          <div class="page-face page-front">
+            <div class="page-ornament"><i class="fa-solid fa-moon"></i></div>
+            <h2>My Deepest Love</h2>
+            <p>
+              Pisi, my softest joy… Karaleva, my queen of every ordinary and extraordinary day…
+              Pupsik, my sweetest heartbeat — there is no word large enough for what you are to me.
+              You live in the quiet corners of my thoughts and in the brightest corners of my hope.
+            </p>
+            <blockquote class="quote">
+              “To the moon and never back again.”
+            </blockquote>
+            <p>
+              That is my love for you: endless, orbiting only you, never wishing for a return
+              trip to a world without your laughter, your warmth, your beautiful soul.
+            </p>
+          </div>
+          <div class="page-face page-back"></div>
+        </article>
+
+        <!-- Page 4 -->
+        <article class="page" data-page="3">
+          <div class="page-face page-front forever-page">
+            <div class="page-ornament"><i class="fa-solid fa-infinity"></i></div>
+            <h2>Our Forever</h2>
+            <p>
+              I think of our memories like pressed flowers — the laughs that made our cheeks ache,
+              the tears we wiped away for each other, the good days that glowed and the hard days
+              that taught us how to hold on. Every chapter, soft or stormy, belongs to us.
+            </p>
+            <p class="question">Can we be together forever?</p>
+            <div class="choice-row" id="forever-choices">
+              <button type="button" class="btn btn-yes" id="forever-yes">
+                Yes, forever! <i class="fa-solid fa-heart"></i>
+              </button>
+              <button type="button" class="btn btn-no runaway" id="forever-no">No</button>
+            </div>
+            <p class="choice-reply" id="forever-reply" hidden>Then forever it is, my love. ♥</p>
+          </div>
+          <div class="page-face page-back"></div>
+        </article>
+
+        <!-- Page 5: Back cover -->
+        <article class="page" data-page="4">
+          <div class="page-face page-front promise-page">
+            <div class="page-ornament"><i class="fa-solid fa-ring"></i></div>
+            <h2>The Ultimate Promise</h2>
+            <p>
+              I dream of the day I make you my wife — of a home that smells like us, of mornings
+              we grow into, of a family we build with patience, laughter, and so much love.
+              You are the future I want to wake up to.
+            </p>
+            <p class="question">Will you be my wife in the future?</p>
+            <div class="choice-row" id="promise-choices">
+              <button type="button" class="btn btn-yes" id="promise-yes">YES! 💍</button>
+              <button type="button" class="btn btn-no funny-no" id="promise-no">No</button>
+            </div>
+            <p class="choice-reply" id="promise-reply" hidden>My forever answer lives in that yes. ♥</p>
+          </div>
+          <div class="page-face page-back back-cover-face">
+            <p>With all my love,<br /><span>Andreas</span></p>
+          </div>
+        </article>
+
+        <div class="book-spine" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <nav class="controls" aria-label="Book navigation">
+      <button type="button" class="nav-btn" id="prev-btn" disabled>
+        <i class="fa-solid fa-arrow-left"></i> Back
+      </button>
+      <div class="page-dots" id="page-dots" aria-hidden="true"></div>
+      <button type="button" class="nav-btn" id="next-btn">
+        Next <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </nav>
+  </main>
+
+  <div class="celebration" id="celebration" aria-hidden="true"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
